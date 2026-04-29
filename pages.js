@@ -219,9 +219,9 @@ function renderProductDetailPage() {
   }
 
   container.innerHTML = `
-    <section style="background:var(--bg-soft);padding:18px 0;border-bottom:1px solid var(--line);">
+    <section style="padding: 24px 0 0;">
       <div class="container">
-        <div class="breadcrumb" style="margin-bottom:0;">
+        <div class="breadcrumb">
           <a href="index.html">Головна</a>
           <span class="sep">→</span>
           <a href="shop.html">Магазин</a>
@@ -233,15 +233,15 @@ function renderProductDetailPage() {
       </div>
     </section>
 
-    <section style="padding: 50px 0 60px;">
+    <section style="padding: 24px 0 60px;">
       <div class="container">
         <div class="product-detail-grid">
           <div class="product-detail-gallery">
-            <div class="product-detail-main" data-pysanka="${product.sv}">${pysankaSVG(product.sv)}</div>
+            <div class="product-detail-main" data-pysanka="${product.sv}">${productVisual(product, {className: 'product-photo product-photo-main'})}</div>
             <div class="product-detail-thumbs">
-              <div class="thumb active" data-pysanka="${product.sv}">${pysankaSVG(product.sv)}</div>
-              <div class="thumb" data-pysanka="${product.sv}">${pysankaSVG(product.sv)}</div>
-              <div class="thumb" data-pysanka="${product.sv}">${pysankaSVG(product.sv)}</div>
+              <div class="thumb active" data-pysanka="${product.sv}">${productVisual(product)}</div>
+              <div class="thumb" data-pysanka="${product.sv}">${productVisual(product)}</div>
+              <div class="thumb" data-pysanka="${product.sv}">${productVisual(product)}</div>
             </div>
           </div>
 
@@ -363,7 +363,7 @@ function renderProductDetailPage() {
       <article class="product-card" onclick="window.location.href='product.html?id=${p.id}'">
         <div class="product-img" data-pysanka="${p.sv}">
           ${p.tag ? `<span class="product-tag${p.tagDark ? ' dark' : ''}">${p.tag}</span>` : ''}
-          ${pysankaSVG(p.sv)}
+          ${productVisual(p)}
         </div>
         <div class="product-body">
           <div class="product-school">${p.school}</div>
@@ -588,21 +588,16 @@ function renderBlogDetailPage() {
   }).join('');
 
   container.innerHTML = `
-    <section style="background:var(--bg-soft);padding:18px 0;border-bottom:1px solid var(--line);">
-      <div class="container-narrow">
-        <div class="breadcrumb" style="margin-bottom:0;">
-          <a href="index.html">Головна</a>
-          <span class="sep">→</span>
-          <a href="blog.html">Блог</a>
-          <span class="sep">→</span>
-          <span>${post.cat}</span>
-        </div>
-      </div>
-    </section>
-
     <article class="blog-article">
       <header class="blog-article-head">
         <div class="container-narrow">
+          <div class="breadcrumb" style="margin-bottom:14px;">
+            <a href="index.html">Головна</a>
+            <span class="sep">→</span>
+            <a href="blog.html">Блог</a>
+            <span class="sep">→</span>
+            <span>${post.cat}</span>
+          </div>
           <div class="blog-article-meta">
             <span class="cat">${post.cat}</span>
             <span class="dot">•</span>
@@ -613,10 +608,6 @@ function renderBlogDetailPage() {
           ${fullPost.sourceLabel ? `<div class="blog-article-source">Джерело: <a href="${fullPost.sourceUrl}" target="_blank" rel="noopener">${fullPost.sourceLabel}</a></div>` : ''}
         </div>
       </header>
-
-      <div class="blog-article-hero" data-pysanka="${post.sv}">
-        ${pysankaSVG(post.sv)}
-      </div>
 
       <div class="container-narrow">
         <div class="blog-article-body">

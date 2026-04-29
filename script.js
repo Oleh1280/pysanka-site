@@ -23,19 +23,19 @@ function toggleTheme() {
 */
 const PRODUCTS = [
   // Hutsul school — найскладніший і найбагатший розпис
-  { id: 1, name: '«Сорок клинців»', school: 'Гуцульська', price: 480, eggType: 'curyche', tag: 'Хіт', desc: 'Класичний гуцульський мотив-сорок клинців символізує сорок мучеників і весняні дні.', sv: 'klyntsi' },
+  { id: 1, name: '«Сорок клинців»', school: 'Гуцульська', price: 480, eggType: 'curyche', tag: 'Хіт', desc: 'Класичний гуцульський мотив-сорок клинців символізує сорок мучеників і весняні дні.', sv: 'klyntsi', image: 'images/hutsul-deer-pair.webp' },
   { id: 2, name: '«Восьмикутна зірка»', school: 'Гуцульська', price: 520, eggType: 'curyche', desc: 'Восьмикутна зірка — давній сонячний символ, оберіг роду.', sv: 'star' },
-  { id: 3, name: '«Олень»', school: 'Гуцульська', price: 640, eggType: 'gusyache', tag: 'Авторська', tagDark: true, desc: 'Гусяче яйце з гуцульським мотивом оленя — символ благородства й духовної висоти.', sv: 'deer' },
+  { id: 3, name: '«Олень»', school: 'Гуцульська', price: 640, eggType: 'gusyache', tag: 'Авторська', tagDark: true, desc: 'Гусяче яйце з гуцульським мотивом оленя — символ благородства й духовної висоти.', sv: 'deer', image: 'images/hutsul-deer-bw.webp' },
   { id: 4, name: '«Берегиня»', school: 'Гуцульська', price: 560, oldPrice: 620, tag: '-10%', eggType: 'curyche', desc: 'Дерево життя як архетип жінки-Берегині, охоронниці роду.', sv: 'beregynya' },
 
   // Pokuttya school — характерна геометрична стрічка
-  { id: 5, name: '«Безконечник»', school: 'Покутська', price: 420, eggType: 'curyche', tag: 'Нове', tagDark: true, desc: 'Хвилеподібний орнамент — символ води, добра і нескінченності буття.', sv: 'infinity' },
+  { id: 5, name: '«Безконечник»', school: 'Покутська', price: 420, eggType: 'curyche', tag: 'Нове', tagDark: true, desc: 'Хвилеподібний орнамент — символ води, добра і нескінченності буття.', sv: 'infinity', image: 'images/geometric-blue.webp' },
   { id: 6, name: '«Кривульки»', school: 'Покутська', price: 360, eggType: 'curyche', desc: 'Зигзаги — давній символ води і безперервного руху життя.', sv: 'kryvulky' },
-  { id: 7, name: '«Сонцеворот»', school: 'Покутська', price: 470, eggType: 'curyche', desc: 'Покутський солярний символ — обертання сонця через рік.', sv: 'sun-wheel' },
+  { id: 7, name: '«Сонцеворот»', school: 'Покутська', price: 470, eggType: 'curyche', desc: 'Покутський солярний символ — обертання сонця через рік.', sv: 'sun-wheel', image: 'images/sun-wheel-orange.webp' },
 
   // Bukovyna school
   { id: 8, name: '«Вазон»', school: 'Буковинська', price: 460, eggType: 'curyche', desc: 'Дерево-вазон — мотив родючості, життєвої сили рослин.', sv: 'vazon' },
-  { id: 9, name: '«Ружа»', school: 'Буковинська', price: 440, eggType: 'curyche', desc: 'Стилізована троянда з шести пелюсток — символ любові й краси.', sv: 'rose' },
+  { id: 9, name: '«Ружа»', school: 'Буковинська', price: 440, eggType: 'curyche', desc: 'Стилізована троянда з шести пелюсток — символ любові й краси.', sv: 'rose', image: 'images/bukovyna-rose.webp' },
 
   // Boyko / Lemko
   { id: 10, name: '«Хрест із крапками»', school: 'Бойківська', price: 390, eggType: 'curyche', desc: 'Бойківський хрест із крапок — символ чотирьох сторін світу та засіяного поля.', sv: 'cross-dots' },
@@ -45,11 +45,11 @@ const PRODUCTS = [
   { id: 12, name: '«Сонце»', school: 'Подільська', price: 380, eggType: 'curyche', desc: 'Сонячне коло з дванадцятьма променями — оберіг від темряви.', sv: 'sun' },
 
   // Etched / страусові
-  { id: 13, name: '«Страусове яйце з оленями»', school: 'Гуцульська', price: 1900, eggType: 'strausyne', tag: 'XL', tagDark: true, desc: 'Велике страусове яйце розписане традиційним гуцульським орнаментом.', sv: 'ostrich-deer' },
-  { id: 14, name: '«Травлене “Космос”»', school: 'Авторська техніка', price: 720, eggType: 'gusyache', tag: 'Травлена', desc: 'Гусяче яйце в техніці витравлювання — рельєфні візерунки на природній шкаралупі.', sv: 'etched' },
+  { id: 13, name: '«Страусове яйце з оленями»', school: 'Гуцульська', price: 1900, eggType: 'strausyne', tag: 'XL', tagDark: true, desc: 'Велике страусове яйце розписане традиційним гуцульським орнаментом — техніка витравлювання, рельєф проступає через шкаралупу.', sv: 'ostrich-deer', image: 'images/hero-ostrich-white.jpg' },
+  { id: 14, name: '«Травлене “Космос”»', school: 'Авторська техніка', price: 720, eggType: 'gusyache', tag: 'Травлена', desc: 'Гусяче яйце в техніці витравлювання — рельєфні візерунки на природній шкаралупі.', sv: 'etched', image: 'images/etched-set.webp' },
 
   // Великодні
-  { id: 15, name: '«Великодній кошик»', school: 'Покутська', price: 540, eggType: 'curyche', desc: 'З одного боку кошик, з іншого — каплиця. Симетричні великодні побажання.', sv: 'easter' },
+  { id: 15, name: '«Великодня хата»', school: 'Покутська', price: 540, eggType: 'curyche', desc: 'Травлена писанка з зображенням української хати, дерев і поля. Великодній сільський мотив.', sv: 'easter', image: 'images/etched-cottage.webp' },
   { id: 16, name: '«Риба і коник»', school: 'Гуцульська', price: 580, eggType: 'curyche', desc: 'Риба як символ Христа, коник як символ достатку родини.', sv: 'fish-horse' },
 ];
 
@@ -561,9 +561,23 @@ function pysankaSVG(variant, opts = {}) {
   return `<svg class="pysanka" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">${inner}</svg>`;
 }
 
-// Re-render all SVG pysanky on theme change to pick up dark palette
+// Returns either a real product photo <img> or a fallback SVG.
+// Use this everywhere instead of pysankaSVG() when rendering products.
+function productVisual(product, opts = {}) {
+  if (product && product.image) {
+    const alt = product.name ? product.name.replace(/«|»/g, '') : 'Писанка';
+    const cls = opts.className || 'product-photo';
+    return `<img class="${cls}" src="${product.image}" alt="${alt}" loading="lazy">`;
+  }
+  return pysankaSVG(product?.sv || 'klyntsi', opts);
+}
+
+// Re-render all SVG pysanky on theme change to pick up dark palette.
+// Photos via <img> stay untouched; only [data-pysanka] slots holding SVGs are refreshed.
 function reRenderPysanky() {
   document.querySelectorAll('[data-pysanka]').forEach(el => {
+    // Skip slots that already host a real photo
+    if (el.querySelector('img.product-photo')) return;
     const variant = el.getAttribute('data-pysanka');
     el.innerHTML = pysankaSVG(variant);
   });
@@ -581,7 +595,7 @@ function addToCart(productId) {
   const cart = getCart();
   const product = PRODUCTS.find(p => p.id === productId);
   if (!product) return;
-  cart.push({ id: productId, name: product.name, price: product.price, sv: product.sv });
+  cart.push({ id: productId, name: product.name, price: product.price, sv: product.sv, image: product.image });
   saveCart(cart);
   showToast(`«${product.name}» додано до кошика`);
 }
@@ -632,7 +646,7 @@ function renderCartDrawer() {
 
   body.innerHTML = cart.map((item, i) => `
     <div class="cart-item">
-      <div class="cart-item-img" data-pysanka="${item.sv}">${pysankaSVG(item.sv)}</div>
+      <div class="cart-item-img" data-pysanka="${item.sv}">${productVisual(item)}</div>
       <div class="cart-item-info">
         <div class="ttl">${item.name}</div>
         <div class="pr">${item.price} ₴</div>
@@ -726,7 +740,7 @@ function renderProducts(containerId, filterFn = null, sortFn = null, limit = nul
         <button class="product-fav" onclick="toggleFav(this); event.stopPropagation();" aria-label="В обране">
           <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-9.5-9C1 9 3 5 7 5c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 4 0 6 4 4.5 7-2.5 4.5-9.5 9-9.5 9z"/></svg>
         </button>
-        ${pysankaSVG(p.sv)}
+        ${productVisual(p)}
       </div>
       <div class="product-body">
         <div class="product-school">${p.school}</div>
@@ -786,10 +800,11 @@ function renderCollections(containerId) {
       </svg></div>`;
     } else if (previewProducts.length > 1 && !isFeatured) {
       visualHtml = `<div class="collection-card-visual multi">
-        ${previewProducts.slice(0, 4).map(p => `<div data-pysanka="${p.sv}">${pysankaSVG(p.sv)}</div>`).join('')}
+        ${previewProducts.slice(0, 4).map(p => `<div data-pysanka="${p.sv}">${productVisual(p)}</div>`).join('')}
       </div>`;
     } else {
-      visualHtml = `<div class="collection-card-visual" data-pysanka="${previewProducts[0]?.sv || 'star'}">${pysankaSVG(previewProducts[0]?.sv || 'star')}</div>`;
+      const first = previewProducts[0];
+      visualHtml = `<div class="collection-card-visual" data-pysanka="${first?.sv || 'star'}">${first ? productVisual(first) : pysankaSVG('star')}</div>`;
     }
     return `
       <article class="collection-card${isFeatured ? ' featured' : ''}" onclick="window.location.href='shop.html?school=${encodeURIComponent(c.name)}'">
