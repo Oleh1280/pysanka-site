@@ -55,13 +55,11 @@ const HEADER_HTML = (active) => `
       <div class="header-phone">
         <span class="label">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
-          +380 97 555 12 34
+          +380 97 000 00 01
           <span class="chev"></span>
         </span>
         <div class="header-phone-list">
-          <a href="tel:+380975551234">+380 97 555 12 34</a>
-          <a href="tel:+380505551234">+380 50 555 12 34</a>
-          <a href="tel:+380935551234">+380 93 555 12 34</a>
+          <a href="tel:+380970000001">+380 97 000 00 01</a>
           <a class="order-call" onclick="alert('Форма зворотного дзвінка')">Замовити дзвінок</a>
         </div>
       </div>
@@ -72,14 +70,6 @@ const HEADER_HTML = (active) => `
       <button onclick="alert('Пошук — буде додано')" aria-label="Пошук" style="display:flex;align-items:center;gap:6px;">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5"/></svg>
       </button>
-      <a href="#" onclick="event.preventDefault(); alert('Кабінет — авторизація буде доступна після підключення оплати')" aria-label="Кабінет">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-        Кабінет
-      </a>
-      <a href="#" onclick="event.preventDefault(); alert('Обрані товари — для збереження потрібна реєстрація')" aria-label="Обране">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-4.5-9.5-9C1 9 3 5 7 5c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 4 0 6 4 4.5 7-2.5 4.5-9.5 9-9.5 9z"/></svg>
-        Обране
-      </a>
       <button onclick="openCart()" aria-label="Кошик">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 7h12l-1.5 11h-9L6 7z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg>
         Кошик<span class="cart-count" data-cart-count>0</span>
@@ -111,7 +101,7 @@ const FOOTER_HTML = `
         <div class="footer-logo">Писан<span>•</span>ка</div>
         <p class="footer-tag">Майстерня авторського писанкового розпису. Майстриня — Галина Сиротюк-П'ятничук, членкиня Національної спілки майстрів народного мистецтва України з 2006 року.</p>
         <div class="footer-payments">
-          Приймаємо: <span class="badge">VISA</span> <span class="badge">MASTERCARD</span> <span class="badge">НП</span>
+          Доставка: <span class="badge">Нова Пошта</span> · Оплата: <span class="badge">Накладений платіж</span> <span class="badge">Переказ на картку</span>
         </div>
       </div>
       <div class="footer-col">
@@ -134,7 +124,7 @@ const FOOTER_HTML = `
       </div>
       <div class="footer-col">
         <h5>Зв'язок</h5>
-        <a href="tel:+380975551234">+380 97 555 12 34</a>
+        <a href="tel:+380970000001">+380 97 000 00 01</a>
         <a href="mailto:hello@pysanka.ua">hello@pysanka.ua</a>
         <p>Пн-Пт, 9:00 – 18:00</p>
         <p style="margin-top:14px">м. Коломия, Івано-Франківська область</p>
@@ -171,7 +161,7 @@ const FOOTER_HTML = `
   <div class="checkout-modal" id="checkout-modal">
     <button class="close" onclick="closeCheckout()">×</button>
     <h3>Оформлення <i>замовлення</i></h3>
-    <p class="sub">Менеджер передзвонить протягом 30 хвилин для підтвердження. Оплата — на вибір.</p>
+    <p class="sub">Менеджер передзвонить протягом доби для підтвердження. Оплата — після підтвердження замовлення.</p>
 
     <form onsubmit="return submitOrder(event)">
       <div class="checkout-form-row">
@@ -214,8 +204,8 @@ const FOOTER_HTML = `
           <span>Оплата при отриманні</span>
         </div>
         <div class="payment-option" onclick="selectPayment(this)">
-          <strong>Картою на сайті</strong>
-          <span>VISA / Mastercard</span>
+          <strong>Переказ на картку</strong>
+          <span>Реквізити після підтвердження</span>
         </div>
       </div>
 

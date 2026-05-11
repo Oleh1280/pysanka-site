@@ -705,20 +705,42 @@ async function submitOrder(e) {
   const textarea = form.querySelector('textarea');
   const submitBtn = form.querySelector('button[type="submit"]');
 
+  // Validate phone (Ukrainian: +380XXXXXXXXX, 380XXXXXXXXX, 0XXXXXXXXX)
+  const phoneRaw = (inputs[1]?.value || '').replace(/[\s\-()]/g, '');
+  const phoneOk = /^(\+?380\d{9}|0\d{9})$/.test(phoneRaw);
+  if (!phoneOk) {
+    showToast('Введіть коректний номер телефону');
+    inputs[1]?.focus();
+    return;
+  }
+
+  // Validate email if provided
+  const emailVal = (inputs[2]?.value || '').trim();
+  if (emailVal && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+    showToast('Введіть коректну email-адресу');
+    inputs[2]?.focus();
+    return;
+  }
+
   const selectedPayment = document.querySelector('.payment-option.selected strong');
-  const paymentMethod = selectedPayment && selectedPayment.textContent.includes('Картою') ? 'card' : 'cod';
+  const paymentMethod = selectedPayment && selectedPayment.textContent.includes('Переказ') ? 'transfer' : 'cod';
 
   const cartItems = getCart();
-  const items = cartItems.map(ci => {
-    const p = PRODUCTS.find(pr => pr.id === ci.id);
-    return { productName: p ? p.name : `Товар #${ci.id}`, quantity: ci.qty, price: p ? p.price : 0 };
+  const grouped = {};
+  cartItems.forEach(ci => {
+    if (grouped[ci.id]) { grouped[ci.id].quantity++; }
+    else {
+      const p = PRODUCTS.find(pr => pr.id === ci.id);
+      grouped[ci.id] = { productName: p ? p.name : ci.name || `Товар #${ci.id}`, quantity: 1, price: p ? p.price : ci.price || 0 };
+    }
   });
+  const items = Object.values(grouped);
 
   const orderData = {
     customer: {
       name: inputs[0]?.value || '',
-      phone: inputs[1]?.value || '',
-      email: inputs[2]?.value || '',
+      phone: phoneRaw.startsWith('+') ? phoneRaw : phoneRaw.startsWith('0') ? '+38' + phoneRaw : '+' + phoneRaw,
+      email: emailVal,
     },
     delivery: {
       city: inputs[3]?.value || '',
@@ -977,6 +999,7 @@ async function loadFromSanity() {
         duration: p.duration,
         colorPalette: p.colorPalette,
         longDesc: p.longDescription?.[0]?.children?.[0]?.text || '',
+        inStock: p.inStock !== false,
         slug: p.slug?.current,
       }));
     }
