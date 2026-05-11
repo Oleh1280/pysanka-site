@@ -953,7 +953,7 @@ let EVENTS = [
     description: 'Майстриня Галина Сиротюк-Пʼятничук представить колекцію авторських писанок на святковому ярмарку до Дня молоді. Можливість придбати роботи та замовити індивідуальний розпис.',
     price: 'Вхід вільний',
     featured: true,
-    coverImage: null,
+    coverImage: 'images/etched-set.webp',
     externalLink: null,
     externalLinkLabel: null,
     dateEnd: null,
@@ -969,7 +969,7 @@ let EVENTS = [
     description: 'Персональна виставка до Дня Незалежності України. Понад 200 робіт — від традиційних гуцульських та покутських мотивів до авторських травлених писанок на страусових яйцях.',
     price: null,
     featured: false,
-    coverImage: null,
+    coverImage: 'images/master-portrait.webp',
     externalLink: null,
     externalLinkLabel: null,
     slug: 'vystavka-nezalezhnist-2026'
@@ -984,7 +984,7 @@ let EVENTS = [
     description: 'Відкритий майстер-клас з воскового розпису писанок напередодні свята Івана Купала. Учасники розпишуть писанку з купальськими мотивами — папороть, вогонь, сонце. Усі матеріали включені.',
     price: '400 ₴',
     featured: false,
-    coverImage: null,
+    coverImage: 'images/sun-wheel-orange.webp',
     externalLink: null,
     externalLinkLabel: null,
     slug: 'majster-klas-kupala-2026'
