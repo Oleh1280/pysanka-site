@@ -105,17 +105,38 @@ pysanka-site/
 
 ---
 
-## 🌐 Інфраструктура
+## 🌐 Інфраструктура та акаунти
 
-| Компонент | URL/Сервіс | Що це |
+| Компонент | URL/Сервіс | Деталі |
 |---|---|---|
-| GitHub | github.com/Oleh1280/pysanka-site | Приватний репо (для безкоштовного Netlify) |
-| Netlify Production | TBD .netlify.app | Бойовий сайт, гілка `main` |
-| Netlify Staging | TBD .netlify.app | Тестовий, гілка `develop` |
-| Sanity (Фаза 1) | TBD | Headless CMS для контенту |
-| LiqPay (Фаза 3) | sandbox/production | Платежі (потрібен ФОП) |
+| **GitHub** | github.com/Oleh1280/pysanka-site | Приватний репо |
+| **Netlify Production** | nimble-churros-45fe19.netlify.app | Гілка `main`, site ID: `6d254dc8-c07c-4004-9ef7-510d319559a0` |
+| **Netlify Staging** | develop--nimble-churros-45fe19.netlify.app | Гілка `develop`, branch deploy |
+| **Netlify Team** | app.netlify.com | Team ID: `69efb37bbe9d30a52ac0f9f0` |
+| **Sanity CMS** | pysanka.sanity.studio | Project ID: `o009icrr`, dataset: `production` |
+| **Sanity API** | o009icrr.api.sanity.io | GROQ через REST, CDN через cdn.sanity.io |
+| **Resend** | resend.com | Email-сервіс, безкоштовний план (3000 листів/міс) |
+| **LiqPay** | — | Фаза 3, потрібен ФОП |
 
-> Точні URL з'являться після Фази 0. Подивись на стан Netlify через `netlify status` або веб-дашборд.
+### Netlify Environment Variables
+
+| Змінна | Секретна | Контекст | Опис |
+|---|---|---|---|
+| `SANITY_PROJECT_ID` | Ні | All | `o009icrr` |
+| `SANITY_TOKEN` | Так | All (окремо по контекстах) | Sanity Editor token для запису замовлень |
+| `RESEND_API_KEY` | Так | All (окремо по контекстах) | Resend API key для email |
+| `MASTER_EMAIL` | Ні | All | Email адміна для сповіщень про замовлення |
+
+### Токени та CLI доступ
+
+| Що | Де зберігається | Термін дії |
+|---|---|---|
+| Netlify Auth Token | `~/.zshrc` як `NETLIFY_AUTH_TOKEN` | Безстроковий, можна відкликати на app.netlify.com/user/applications |
+| Sanity Editor Token | Netlify env vars | Безстроковий, створений на sanity.io/manage |
+| Resend API Key | Netlify env vars | Безстроковий |
+| GitHub auth | `gh auth` (OAuth) | Сесійний |
+
+> **Секрети НЕ зберігаються в коді.** Sanity Project ID — публічний (безпечно в frontend JS).
 
 ---
 

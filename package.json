@@ -1,5 +1,10 @@
 {
   "private": true,
+  "scripts": {
+    "test": "node --test tests/order-function.test.mjs tests/phone-validation.test.mjs",
+    "test:integration": "node --test tests/integration.test.mjs",
+    "test:all": "node --test tests/*.test.mjs"
+  },
   "dependencies": {
     "@sanity/client": "^7.22.0",
     "resend": "^4.0.0"
