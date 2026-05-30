@@ -56,7 +56,7 @@ let PRODUCTS = [
   { id: 17, name: 'Сертифікат на 500 ₴', school: 'Сертифікат', price: 500, tag: 'Подарунок', tagDark: true, desc: 'Подарунковий сертифікат на будь-яку писанку з магазину. Ідеальний подарунок для тих, хто цінує ручну роботу.', sv: 'cert', isCert: true },
   { id: 18, name: 'Сертифікат на 1000 ₴', school: 'Сертифікат', price: 1000, tag: 'Подарунок', tagDark: true, desc: 'Подарунковий сертифікат на одну або кілька писанок. Отримувач обирає сам — від курячої до гусячої.', sv: 'cert', isCert: true },
   { id: 19, name: 'Сертифікат на 2000 ₴', school: 'Сертифікат', price: 2000, tag: 'Подарунок', tagDark: true, desc: 'Преміум-сертифікат — вистачить на страусову писанку або набір з кількох авторських робіт.', sv: 'cert', isCert: true },
-  { id: 20, name: 'Сертифікат на майстер-клас', school: 'Сертифікат', price: 800, tag: 'Подарунок', tagDark: true, desc: 'Подарунковий сертифікат на індивідуальний майстер-клас з воскового розпису писанок. Усі матеріали включені.', sv: 'cert-workshop', isCert: true },
+  { id: 20, name: 'Майстер-клас (група)', school: 'Сертифікат', price: 3000, tag: 'Група', tagDark: true, desc: 'Груповий майстер-клас з воскового розпису (від 6 осіб, мін. 3000 ₴). Кожен додатковий учасник — 400 ₴. Усі матеріали включені: писачки, віск, барвники, яйця.', sv: 'cert-workshop', isCert: true },
 ];
 
 /* ---------- DATA: COLLECTIONS ---------- */
@@ -554,55 +554,82 @@ function svFishHorse(p, id) {
     + pysankaHighlight(id);
 }
 
-// Certificate — gift card visual
+// Certificate — premium gift card visual with ethnic ornament
 function svCert(p, id) {
   const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-  const svgBg = isDark ? '#1a1a1a' : '#f7f7f7';
-  const cardBg = isDark ? '#2c2c2c' : '#fff8eb';
-  const textCol = isDark ? '#f0f0f0' : '#181818';
+  const svgBg = isDark ? '#161616' : '#f5f0e8';
+  const cardBg = isDark ? '#1e1e1e' : '#fffcf5';
+  const borderCol = isDark ? '#444' : '#c4a265';
+  const goldCol = isDark ? '#d4a537' : '#b8942a';
+  const textCol = isDark ? '#e8e0d0' : '#181818';
+  // Ethnic corner ornament
+  const corner = (tx, ty, rot) => `<g transform="translate(${tx},${ty}) rotate(${rot})">
+    <path d="M0 0 Q8 2 12 8 Q10 4 14 0" stroke="${goldCol}" stroke-width="1.2" fill="none"/>
+    <path d="M0 0 Q2 8 8 12 Q4 10 0 14" stroke="${goldCol}" stroke-width="1.2" fill="none"/>
+    <circle cx="0" cy="0" r="2" fill="${p.red}"/>
+  </g>`;
   return `
-  <rect x="0" y="0" width="200" height="240" rx="0" fill="${svgBg}"/>
-  <rect x="14" y="30" width="172" height="180" rx="14" fill="${cardBg}" stroke="${p.red}" stroke-width="2"/>
-  <rect x="14" y="30" width="172" height="44" rx="14" fill="${p.red}"/>
-  <rect x="14" y="60" width="172" height="14" fill="${p.red}"/>
-  <text x="100" y="60" text-anchor="middle" font-family="Arsenal,sans-serif" font-size="16" font-weight="700" fill="#fff" letter-spacing="3">ПОДАРУНОК</text>
-  <g transform="translate(100,130)">
-    <ellipse cx="0" cy="0" rx="28" ry="34" fill="none" stroke="${textCol}" stroke-width="2"/>
-    <path d="M-24 -8 Q0 -14 24 -8" stroke="${p.red}" stroke-width="2.5" fill="none"/>
-    <path d="M-24 8 Q0 14 24 8" stroke="${p.red}" stroke-width="2.5" fill="none"/>
-    <circle cx="0" cy="0" r="7" fill="${p.red}"/>
+  <rect x="0" y="0" width="200" height="240" fill="${svgBg}"/>
+  <rect x="12" y="18" width="176" height="204" rx="8" fill="${cardBg}" stroke="${borderCol}" stroke-width="2"/>
+  <rect x="18" y="24" width="164" height="192" rx="5" fill="none" stroke="${borderCol}" stroke-width="0.8" stroke-dasharray="3,2"/>
+  ${corner(24, 30, 0)}${corner(176, 30, 90)}${corner(176, 210, 180)}${corner(24, 210, 270)}
+  <rect x="40" y="38" width="120" height="32" rx="4" fill="${p.red}"/>
+  <text x="100" y="60" text-anchor="middle" font-family="Arsenal,sans-serif" font-size="13" font-weight="700" fill="#fff" letter-spacing="3">ПОДАРУНОК</text>
+  <g transform="translate(100,118)">
+    <ellipse cx="0" cy="0" rx="30" ry="36" fill="none" stroke="${textCol}" stroke-width="1.8"/>
+    <ellipse cx="0" cy="0" rx="22" ry="28" fill="none" stroke="${goldCol}" stroke-width="0.8"/>
+    <path d="M-26 -8 Q0 -15 26 -8" stroke="${p.red}" stroke-width="2" fill="none"/>
+    <path d="M-26 8 Q0 15 26 8" stroke="${p.red}" stroke-width="2" fill="none"/>
+    <circle cx="0" cy="0" r="6" fill="${p.red}"/>
+    <circle cx="0" cy="0" r="2.5" fill="${isDark ? '#1e1e1e' : '#fff'}"/>
   </g>
-  <line x1="34" y1="186" x2="166" y2="186" stroke="${textCol}" stroke-width="1" stroke-dasharray="5,3"/>
-  <text x="100" y="200" text-anchor="middle" font-family="Arsenal,sans-serif" font-size="11" fill="${textCol}" font-weight="700" letter-spacing="2">ПИСАН·КА</text>`;
+  <path d="M50 80 Q100 76 150 80" stroke="${goldCol}" stroke-width="0.8" fill="none"/>
+  <path d="M50 156 Q100 160 150 156" stroke="${goldCol}" stroke-width="0.8" fill="none"/>
+  <g fill="${goldCol}"><circle cx="50" cy="118" r="1.5"/><circle cx="150" cy="118" r="1.5"/></g>
+  <line x1="50" y1="184" x2="150" y2="184" stroke="${goldCol}" stroke-width="0.8"/>
+  <text x="100" y="198" text-anchor="middle" font-family="Arsenal,sans-serif" font-size="11" fill="${textCol}" font-weight="700" letter-spacing="2">ПИСАН<tspan fill="${p.red}">·</tspan>КА</text>`;
 }
 
-// Certificate for workshop
+// Certificate for workshop — premium design with candle/kystka motif
 function svCertWorkshop(p, id) {
   const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-  const svgBg = isDark ? '#1a1a1a' : '#f7f7f7';
-  const cardBg = isDark ? '#2c2c2c' : '#fff8eb';
-  const textCol = isDark ? '#f0f0f0' : '#181818';
-  const headerBg = isDark ? '#383838' : '#181818';
+  const svgBg = isDark ? '#161616' : '#f0ece4';
+  const cardBg = isDark ? '#1e1e1e' : '#fffcf5';
+  const headerBg = isDark ? '#252525' : '#181818';
+  const borderCol = isDark ? '#444' : '#181818';
+  const goldCol = isDark ? '#d4a537' : '#b8942a';
+  const textCol = isDark ? '#e8e0d0' : '#181818';
+  // Ethnic border pattern
+  const zigzag = (y) => {
+    let d = `M24 ${y}`;
+    for (let i = 0; i < 22; i++) d += ` l4 ${i % 2 === 0 ? -4 : 4}`;
+    return `<path d="${d}" stroke="${goldCol}" stroke-width="0.8" fill="none"/>`;
+  };
   return `
-  <rect x="0" y="0" width="200" height="240" rx="0" fill="${svgBg}"/>
-  <rect x="14" y="30" width="172" height="180" rx="14" fill="${cardBg}" stroke="${textCol}" stroke-width="1.5"/>
-  <rect x="14" y="30" width="172" height="44" rx="14" fill="${headerBg}"/>
-  <rect x="14" y="60" width="172" height="14" fill="${headerBg}"/>
-  <text x="100" y="60" text-anchor="middle" font-family="Arsenal,sans-serif" font-size="14" font-weight="700" fill="${p.red}" letter-spacing="2">МАЙСТЕР-КЛАС</text>
-  <g transform="translate(100,130)" stroke="${textCol}" stroke-width="2" fill="none">
-    <path d="M-14 18 L-14 -6 Q-14 -18 0 -22 Q14 -18 14 -6 L14 18"/>
-    <circle cx="0" cy="-22" r="5" fill="${p.red}"/>
-    <line x1="-6" y1="0" x2="6" y2="0"/>
-    <line x1="-6" y1="8" x2="6" y2="8"/>
+  <rect x="0" y="0" width="200" height="240" fill="${svgBg}"/>
+  <rect x="12" y="18" width="176" height="204" rx="8" fill="${cardBg}" stroke="${borderCol}" stroke-width="2"/>
+  <rect x="18" y="24" width="164" height="192" rx="5" fill="none" stroke="${borderCol}" stroke-width="0.6"/>
+  ${zigzag(80)}${zigzag(162)}
+  <rect x="36" y="34" width="128" height="36" rx="4" fill="${headerBg}"/>
+  <text x="100" y="50" text-anchor="middle" font-family="Arsenal,sans-serif" font-size="10" fill="${goldCol}" letter-spacing="2" font-weight="700">МАЙСТЕР-КЛАС</text>
+  <text x="100" y="64" text-anchor="middle" font-family="Arsenal,sans-serif" font-size="8" fill="${isDark ? '#888' : '#999'}" letter-spacing="1">ВОСКОВОГО РОЗПИСУ</text>
+  <g transform="translate(100,120)">
+    <path d="M-10 22 L-10 -4 Q-10 -16 0 -22 Q10 -16 10 -4 L10 22" stroke="${textCol}" stroke-width="2" fill="none"/>
+    <circle cx="0" cy="-22" r="6" fill="${p.red}"/>
+    <circle cx="0" cy="-22" r="2.5" fill="${isDark ? '#ffd080' : '#ffb830'}"/>
+    <path d="M0 -28 Q-2 -34 0 -38 Q2 -34 0 -28" fill="${isDark ? '#ffd080' : '#ffb830'}" opacity="0.8"/>
+    <line x1="-5" y1="4" x2="5" y2="4" stroke="${textCol}" stroke-width="1.5"/>
+    <line x1="-5" y1="10" x2="5" y2="10" stroke="${textCol}" stroke-width="1.5"/>
+    <line x1="-5" y1="16" x2="5" y2="16" stroke="${textCol}" stroke-width="1.5"/>
   </g>
-  <g fill="${p.red}">
-    <circle cx="48" cy="145" r="3"/>
-    <circle cx="152" cy="145" r="3"/>
-    <circle cx="48" cy="115" r="3"/>
-    <circle cx="152" cy="115" r="3"/>
+  <g fill="${p.red}" opacity="0.9">
+    <circle cx="52" cy="106" r="2.5"/><circle cx="148" cy="106" r="2.5"/>
+    <circle cx="52" cy="134" r="2.5"/><circle cx="148" cy="134" r="2.5"/>
+    <circle cx="42" cy="120" r="1.8"/><circle cx="158" cy="120" r="1.8"/>
   </g>
-  <line x1="34" y1="186" x2="166" y2="186" stroke="${textCol}" stroke-width="1" stroke-dasharray="5,3"/>
-  <text x="100" y="200" text-anchor="middle" font-family="Arsenal,sans-serif" font-size="11" fill="${textCol}" font-weight="700" letter-spacing="2">ПИСАН·КА</text>`;
+  <text x="100" y="176" text-anchor="middle" font-family="Arsenal,sans-serif" font-size="9" fill="${isDark ? '#888' : '#666'}" letter-spacing="0.5">від 6 осіб · 400 ₴/особа</text>
+  <line x1="50" y1="188" x2="150" y2="188" stroke="${goldCol}" stroke-width="0.8"/>
+  <text x="100" y="202" text-anchor="middle" font-family="Arsenal,sans-serif" font-size="11" fill="${textCol}" font-weight="700" letter-spacing="2">ПИСАН<tspan fill="${p.red}">·</tspan>КА</text>`;
 }
 
 const SVG_RENDERERS = {
