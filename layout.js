@@ -2,6 +2,21 @@
    PYSANKA SITE — SHARED LAYOUT (klamra-style: dark header, no topbar)
    ================================================================= */
 
+/* ---------- АНАЛІТИКА (Google Analytics 4) ----------
+   Заповнити GA_ID після створення GA4-властивості (формат 'G-XXXXXXXXXX').
+   Поки порожньо — аналітика вимкнена, жодного впливу на сайт. */
+const GA_ID = '';
+if (GA_ID) {
+  const gaScript = document.createElement('script');
+  gaScript.async = true;
+  gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+  document.head.appendChild(gaScript);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  window.gtag('js', new Date());
+  window.gtag('config', GA_ID);
+}
+
 const HEADER_HTML = (active) => `
 <header>
   <div class="header-inner">
