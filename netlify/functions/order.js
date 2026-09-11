@@ -4,10 +4,14 @@ const {Resend} = require('resend');
 // Захищена ініціалізація: якщо ключів немає — не падаємо на старті (жодних 502),
 // а деградуємо м'яко. Це запобіжник; для повноцінної роботи потрібні env-змінні
 // SANITY_TOKEN та RESEND_API_KEY на Netlify-сайті продакшену.
+// Замовлення пишемо в ОКРЕМУ приватну базу (SANITY_ORDERS_DATASET), щоб персональні
+// дані покупців (ім'я, телефон, адреса) не читалися публічно через Sanity API.
+// Каталог лишається в публічній 'production' (щоб працювали фото). Поки env-змінну
+// не задано — default 'production' (стара поведінка, без ризику на деплої).
 const sanity = process.env.SANITY_TOKEN
   ? createClient({
       projectId: process.env.SANITY_PROJECT_ID || 'o009icrr',
-      dataset: 'production',
+      dataset: process.env.SANITY_ORDERS_DATASET || 'production',
       token: process.env.SANITY_TOKEN,
       apiVersion: '2024-01-01',
       useCdn: false,
