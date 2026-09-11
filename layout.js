@@ -5,7 +5,7 @@
 /* ---------- АНАЛІТИКА (Google Analytics 4) ----------
    Заповнити GA_ID після створення GA4-властивості (формат 'G-XXXXXXXXXX').
    Поки порожньо — аналітика вимкнена, жодного впливу на сайт. */
-const GA_ID = '';
+const GA_ID = 'G-R3GJHPHCH7';
 if (GA_ID) {
   const gaScript = document.createElement('script');
   gaScript.async = true;
