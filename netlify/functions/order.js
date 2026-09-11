@@ -4,14 +4,10 @@ const {Resend} = require('resend');
 // Захищена ініціалізація: якщо ключів немає — не падаємо на старті (жодних 502),
 // а деградуємо м'яко. Це запобіжник; для повноцінної роботи потрібні env-змінні
 // SANITY_TOKEN та RESEND_API_KEY на Netlify-сайті продакшену.
-// Замовлення пишемо в ОКРЕМУ приватну базу (SANITY_ORDERS_DATASET), щоб персональні
-// дані покупців (ім'я, телефон, адреса) не читалися публічно через Sanity API.
-// Каталог лишається в публічній 'production' (щоб працювали фото). Поки env-змінну
-// не задано — default 'production' (стара поведінка, без ризику на деплої).
 const sanity = process.env.SANITY_TOKEN
   ? createClient({
       projectId: process.env.SANITY_PROJECT_ID || 'o009icrr',
-      dataset: process.env.SANITY_ORDERS_DATASET || 'production',
+      dataset: 'production',
       token: process.env.SANITY_TOKEN,
       apiVersion: '2024-01-01',
       useCdn: false,
@@ -124,16 +120,17 @@ exports.handler = async function(event) {
     // 1. Save to Sanity
     if (sanity) {
       try {
+        // Приватність: НЕ пишемо в базу персональні дані покупця (ім'я/телефон/email/
+        // коментар) — вони йдуть лише в лист майстрині. У базі лишається знеособлений
+        // запис для історії/статистики, бо датасет Sanity публічно читається.
         await sanity.create({
           _type: 'order',
           orderNumber: order.orderNumber,
           status: 'new',
-          customer: order.customer,
           delivery: order.delivery,
           items: order.items,
           total: order.total,
           paymentMethod: order.paymentMethod,
-          comment: order.comment,
           createdAt: new Date().toISOString(),
         });
       } catch (e) { warnings.push('sanity'); console.error('Sanity save failed:', e && e.message); }
